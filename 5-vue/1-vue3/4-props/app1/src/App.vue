@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <HelloWorld msg="Hello Vue" mark="!" />
 </template>
 
