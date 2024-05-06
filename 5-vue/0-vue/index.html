@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3 v-for v-if v-on v-model</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="id">
+    <p>{{ ほしい物リスト }}</p>
+    <ul v-for="item in items">
+      <li>{{item}}</li>
+    </ul>
+    <p>{{addlist}}</p>
+    <input type="text" v-model="addlist">
+    <button v-if="addlist!=''" @click="add">追加</button>
+  </div>
+  
+  <script>
+    const appdata = {
+      data() {
+        return {
+          message:"こんばんは",
+          item:['PSS','PC'],
+          addlist:""
+        }
+      },
+      methods:{
+        add(){
+          this.items.push(this.addlist)
+        }
+      }
+    }
+    
+let app = Vue.createApp(appdata).mount('#app')
+
+  </script>
+  
+</body>
+</html>
+
