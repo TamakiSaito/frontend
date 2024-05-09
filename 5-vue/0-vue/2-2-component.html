@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+   {{ message }}
+   <fruits v-for="item in items" :text="item"></fruits>
+   <input type="text" v-model="additem">
+   <button @click="add">click</button>
+  </div>
+  
+  <script>
+    const appdata = {
+      data() {
+        return {
+          message: "Fruits",
+          items:['apple','banana','orange'],
+          additem: ""
+        }
+      },
+      methods: {
+        add() {
+          this.items.push(this.additem)
+        }
+      }
+    }
+    
+    const app = Vue.createApp(appdata)
+    app.componet('fruits',{
+      prpps:['text']
+      ,
+        template:'<li>{{text}}</li>'
+    })
+    app.mount('#app')
+
+  </script>
+  
+</body>
+</html>
+
