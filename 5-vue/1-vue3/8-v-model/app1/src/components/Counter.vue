@@ -3,7 +3,7 @@
   <h1>Counter</h1>
   <p>Count: {{ count }}</p>
   <button @click="plus">+</button>
-  <button @click="minus">+</button>
+  <button @click="minus">-</button>
 
     <div v-if="count < 0" class="red">
       <p>* 0個以上を選択してください</p>
