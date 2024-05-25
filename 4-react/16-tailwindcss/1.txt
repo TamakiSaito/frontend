@@ -1,0 +1,102 @@
+1. class名で制御する
+  tailwindcss, bootstrao, ...
+  どのclassがどのスタイを持っているかを"変える必要"がある
+
+  従来は下記のように繰り返し使用ていた
+  # here.js
+  <div className="here">こっちだよ</div>
+
+  # here.css
+  .here {
+    marigin-top : 10px;
+  }
+
+  classの制御するライブラリを使用すると cssを使用する必要が無くなる
+  # here.js
+  <div className="mt-2">こっちだよ</div>
+
+  [tailwindcss 設置方法]
+
+  1.最初に下記を連結
+   $ npm install -D tailwindcss postcss autoprefixer
+   $ npm tailwindcss init
+
+  1. postcss.config.js 設置した後、jsファイルを生成
+    npm install -D tailwindcss postcss autoprefixer
+
+  1. tailwindcss.config.js ファイルを生成
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+      content: ["./src/**/*.{jsx,js,ts,tsx}", "./public/index.html"],
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    }
+
+  1. Webpackにtailwindcss 連結
+    $ npm i -D postcss-loader css-loader style-loader
+
+  1. webpack.config.js ファイルを生成
+    import path from "path"
+    import webpack from "webpack"
+    import HtmlWebpackPlugin from "html-webpack-plugin"
+    import { CleanWebpackPlugin } from "clean-webpack-plugin"
+    import ESLintPlugin from "eslint-webpack-plugin"
+    import "webpack-dev-server"
+
+    // const config: webpack.Configuration = { // webpack.config.ts
+    const config = {
+      mode: "development",
+      entry: "./src/index.tsx",
+      module: {
+        rules: [
+          {
+            test: /\.{ts|tsx}$/,
+            include: path.resolve(__dirname, "src"),
+            use: ["babel-loader"],
+          },
+          {
+            test: /\.css$/,
+            include: path.resolve(__dirname, "src"),
+            use: ["style-loader", "css-loader", "postcss-loader"],
+          },
+        ],
+      },
+      resolve: {
+        extensions: [".tsx", ".ts", "js"],
+      },
+      output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          templeta: "public/index.html",
+        }),
+        new CleanWebpackPlugin(),
+        new ESLintPlugin({
+          extensions: ["ts", "tsx"],
+        }),
+      ],
+    }
+
+    export default config
+
+  1. src/tailwindcss.css 生成
+   @tailwind base;
+   @tailwind components;
+   @tailwind utilities;
+
+  1. tailwind.css 連結
+  $ npx tailwindcss -i ./src/tailwind.css -o ./dist/output.css --watch
+
+
+  1. src/index.js 修正
+  import React from 'react';
+  import ReactDOM from 'react-dom/client';
+  import App from './App';
+  import './tailwind.css';
+  
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App />);

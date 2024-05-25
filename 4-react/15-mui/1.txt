@@ -1,6 +1,4 @@
 #style libary
 
 1. component自体をimportする
-mui(material-ui),chakura-ui...
-
-1. class名で制御する
+  mui(material-ui),chakura-ui...
