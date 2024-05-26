@@ -5,13 +5,14 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import "webpack-dev-server";
 
+// const config: webpack.Configuration = { // webpack.config.ts
 const config = {
   mode: "development",
   entry: "./src/index.tsx",
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         include: path.resolve(__dirname, "src"),
         use: ["babel-loader"],
       },
@@ -23,7 +24,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"], // ドットが抜けていたため修正
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -31,7 +32,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "public/index.html", // タイプミスを修正
+      template: "public/index.html",
     }),
     new CleanWebpackPlugin(),
     new ESLintPlugin({
