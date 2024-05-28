@@ -19,7 +19,7 @@
 
   1.最初に下記を連結
    $ npm install -D tailwindcss postcss autoprefixer
-   $ npm tailwindcss init
+   $ npx tailwindcss init
 
   1. postcss.config.js 設置した後、jsファイルを生成
     npm install -D tailwindcss postcss autoprefixer
