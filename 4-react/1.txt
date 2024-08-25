@@ -1,0 +1,40 @@
+- frameworkとは？
+  - 何かの枠組み・骨組み・構造・体系・フレームワーク
+  - 何かの基礎となる構造
+
+- JavaScript Framework
+  - react: Reactive app(SPA: Single Page Application) -library
+    $ npx create-react-app app1 // 必須のWEBライブラリをCRAで一括インストールされるようになった_node_module
+  - next(MPA: Multiple Page Application) - framework
+    $ npx create-react-app app1
+  - vue(SPA) - framework
+    $ vue create app1
+  - nuxt(MPA) - framework
+    $ npx create-nuxt-app app1
+
+
+- ReactDOM
+ - DOMとは？(Document Object Model)
+ - 画面を表示するまでに解釈したHTML/CSS/JavaScriptによって構築されたDOM(ツリー)を指す
+ - DOMはChromeやSafari、Fox、IEなどのブラウザ上で、Webページを描画するために構築される
+ - DOMはWebページとスクリプやプログラミング言語を接続するものでり、JavaScriptなどによって要素の値をダイレクトに操作することができる 
+※ 仮想DOMを利用することで、ページ変更前と変更後を仮想DOMを比較、情報が変化した部分だけを素早く見つけ出し
+  変更差分だけリアルDOMに反映する為、変更が最小限に抑えられるという仕組み
+
+
+- node_moduleの一部
+  - websocket
+    - 過去 クライアント側から連絡をしなければホスト側から返答がなかった(変更後、手動リフレッシュが必要だった)
+      Clint -> Host
+      フロント -> サーバー
+    - 現在 クライアント側から連絡をしなくてもホスト側から自動的に連絡がくる(変更後、自動リフレッシュされる)
+      Clint <- Host
+      フロント <- サーバー
+  - webpack : bundling (export、importをできるようにする)
+  - bable-loader : それぞれのjs versionに適したversionへ変換してくれる
+
+node_module : library
+public : static source(定的なソース、img、icon)
+src : dynamic source(動的なソース、js、html、css)
+package.json : library管理、script管理
+package-lock.json : libraryのversion管理

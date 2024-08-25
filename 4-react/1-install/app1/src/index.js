@@ -4,5 +4,6 @@ import App from './App';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// 1. App.jsコンポーネントをrender内で表示
 root.render(<App />);
 

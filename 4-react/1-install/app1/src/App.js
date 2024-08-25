@@ -1,8 +1,10 @@
+// Appコンポーネント
 // JSX文法
 
 // CSS
 import './App.css';
 
+// 1. exportがないとAppをimportできない
 export default function App() {
   // JS  
   const name = "Yang";
