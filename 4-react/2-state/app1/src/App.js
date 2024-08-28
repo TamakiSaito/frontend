@@ -4,11 +4,11 @@
 import './App.css';
 
 export default function App() {
-  // JS  
+  // JavaScript
   const name = "Yang";
   const mark = "!";
   
-  // XML
+  // XML(HTMLより発展したもの)
   return (
     <div className="App">
         <p className="red">

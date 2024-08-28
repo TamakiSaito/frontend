@@ -38,3 +38,50 @@ public : static source(定的なソース、img、icon)
 src : dynamic source(動的なソース、js、html、css)
 package.json : library管理、script管理
 package-lock.json : libraryのversion管理
+
+
+-------------------
+- Propsを渡す場合 
+  - function Movies()の()に{ name }を入れる(2つ渡す場合は{ name, mark })
+
+Movies.js(子コンポーネント)
+export default function Movies({ name }) {
+  return (
+    <div>
+      <h1>Movies App</h1>
+      <h3>User: {name}</h3>
+    </div>
+  );
+}
+
+App.js(親コンポーネント)
+- Movies.jsをimportして
+import Movies from "./components/Movies";
+
+export default function App() {
+  const username = "Yang";
+  const mark = "?";
+
+  return (
+    <div className="App">
+      <p>
+      - component化した<Movies />に User: {name}表記の中身をname=""で値を渡す
+        <Hello name={username} mark={mark} />
+        <Movies name="Yamamoto" />
+        <Movies name="Takahashi" />
+      </p>
+    </div>
+  );
+}
+-------------------
+- if
+
+- vip={true} -> vipに省略化
+- vip={false} -> は記載しない
+- {vip === true && "VIP様"} -> {vip && "VIP様"}に省略化 : vipがtrueだったらVIP様を記載 (truthy falsy概念)
+- {vip ? "VIP様" : "様"} : vipがtrueの場合"VIP様"・falseの場合"様" (三項演算子)
+- 
+<Movies name="Saito" vip money />
+
+- 「isXX」は Booleanの「変数名」に多々使われる
+const isMoney = money ? "有料" : "無料";
