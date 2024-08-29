@@ -8,14 +8,19 @@ export default function App() {
     { id: 3, name: "Yang", email: "yang@google.com"},
   ]
 
+  // userlistからmapしてuserを一つづつ出す
   const render = userlist.map(user => {
     return (
+      // userlistの中身を一つづつ区分する為に「key」が必要！(表示されない)
       <div key={user.id}>
         <div>名前:{user.name}</div>
-        <div>メアド:{user.email}</div>
+        <div>メールアドレス:{user.email}</div>
+        {/* <hr />は線 */}
+        <hr />
       </div>
     );
   });
 
-  return <div className="App"> {render}</div>;
+  // 「render」をここに入れる
+  return <div className="App">{render}</div>;
 }

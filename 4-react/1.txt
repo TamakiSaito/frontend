@@ -43,6 +43,7 @@ package-lock.json : libraryのversion管理
 -------------------
 - Propsを渡す場合 
   - function Movies()の()に{ name }を入れる(2つ渡す場合は{ name, mark })
+  - src < componentsフォルダにファイルを作成する
 
 Movies.js(子コンポーネント)
 export default function Movies({ name }) {
@@ -85,3 +86,13 @@ export default function App() {
 
 - 「isXX」は Booleanの「変数名」に多々使われる
 const isMoney = money ? "有料" : "無料";
+
+-------------------
+- useState, setState - 不変性の法則 -
+
+  - Reactは全てオブジェクトなので関数と変数は「const」で定義
+   - letの代わりに「useState」変数が必要
+      let count = 0 の代わりに↓
+      const [count, setCount] =useState(0);
+      - 「setState」は[count, setCount]の「count」を変更する「関数」
+  - 関数を呼び出す場合キャメルケース: onClick
