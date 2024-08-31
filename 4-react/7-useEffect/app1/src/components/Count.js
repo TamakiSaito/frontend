@@ -1,3 +1,4 @@
+// Count.jsを開いた時にuseEffect
 import { useState, useEffect } from "react";
 
 
@@ -16,17 +17,17 @@ export default function Count() {
 
   // Lifecycle Hooks
 
-  // mounted
+  // mounted (returnなし)：countを押した時
   useEffect(() => {
     console.log("mounted");
   }, []);
 
-  // updated
+  // updated : countの数が変わって実行された時
   useEffect(() => {
     console.log("updated:", count);
   },[count]);
 
-  //unmounted
+  //unmounted (returnあり)：再びcountを押した時
   useEffect(() => {
     return () => {
       console.log("unmounted");
