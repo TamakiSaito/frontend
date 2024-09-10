@@ -1,3 +1,4 @@
+/* <span>タグだkらpaddin/marginが効かないからdisplayを追加 */
 .movieTitle{
   display: block;
   color: gray;
