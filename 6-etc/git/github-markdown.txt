@@ -1,0 +1,85 @@
+- github markdown記法
+
+Headers 見出し
+# 見出し1
+## 見出し2
+### 見出し3
+#### 見出し4
+##### 見出し5
+###### 見出し6
+
+Ol 番号付きリスト
+1. 番号付きリスト1
+ 1. 番号付きリスト1-1
+1. 番号付きリスト2
+1. 番号付きリスト3
+
+強調
+em
+*イタリック_アスタリスク*
+_イタリック_アンダーバー_
+strong
+**ボールド_アスタリスク2つ**
+__ボールド_アンダーバー2つ__
+em + strong
+***イタリック&ボールド_アスタリスク3つ***
+___イタリック&ボールド_アンダーバー3つ___
+
+- Lists 箇条書きリスト
+ - リスト1-1
+ - リスト1-2
+ - リスト1-3
+
+Images 画像
+![alt](画像URL)
+![代替文字列](URL "タイトル")
+
+<img src="attach:cat.jpg" alt="attach:cat" title="attach:cat" width="200" height="200">
+![GitHubロゴ](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+Link リンク
+[GitHub](https://github.com)
+
+Blockquotes 引用
+> 引用
+>> 多重引用
+
+Code コード
+print 'hoge'
+`インラインコード`
+
+Hr 水平線(アンダースコア_ 、アスタリスク*、ハイフン-などを3つ以上連続して記述)
+hoge
+****
+hoge
+____
+hoge
+----
+
+Table 表(-と|を使ってtableを作成)
+|MON|ON|
+----|----
+|TUE|OFF|
+|WED|ON|
+
+| 左揃え | 中央揃え | 右揃え |
+| :--- | :---: | ---: |
+|1  |2 |3 |
+|4 |5 |6 |
+
+Strikethrough 取り消し線
+~~取り消し文字列~~
+
+Checklist チェックリスト
+- [ ] not checked
+- [x] checked
+
+Block 段落
+段落1
+(空行) 
+段落2
+
+Br 改行(改行の前に半角スペースを2つ記述)
+hoge
+fuga  
+piyo
