@@ -40,8 +40,8 @@ Commit 履歴２コミット表示 + 変更ファイル表示
 $ git log -2 --patch
 $ git log -2 --p
 Commit ファイル差分 ２コミット表示
-( そのままだとコード全表示で膨大な行数　になるため、
-　$ git log -2 -p など表示を減らすためオプションを組み合わせるのがオススメ )
+( そのままだとコード全表示で膨大な行数になるため、
+$ git log -2 -p など表示を減らすためオプションを組み合わせるのがオススメ )
 
 $ $ git log -p ファイルパス/ファイル名
 ( 誰が編集したかなど ) 特定ファイルの変更履歴を表示
@@ -137,12 +137,12 @@ Remote Bookmark をダウンロード。FETCH_HEADブランチ作成
 $ git pull
 Local WorkTree に Remote Repository を ダイレクト反映
 ※ git pull しても、git fetch と同じ状態になり merge まで実行されないケースがある。
-　その際は再度 git merge origin/ブランチ名 で解決する。
+その際は再度 git merge origin/ブランチ名 で解決する。
 
 $ git pull origin <Remote Branch Name>
 既に存在する Local Branch へ 最新の Remote Branch を反映
 ※ ! [rejected] error: failed to push some refs ~
-　といったコンフリクト(競合)エラー発生時にも有効
+といったコンフリクト(競合)エラー発生時にも有効
 
 $ git branch <branch name>
 branch 作成
@@ -229,3 +229,107 @@ $ git rm -r --cached .
 ファイル全体キャッシュ削除
 $ git rm -r --cached [ファイル名]
 ファイル指定してキャッシュ削除
+
+
+
+______create_branch______ 
+Local (PC) < - > Remote (Github) 
+Git fetch origin = refresh 
+Git pull origin develop = Local develop <- Remote develop 
+>>>>>> npm i 
+>>>>>> package.jsonの差分を破棄する 
+Git checkout -b branch
+
+______PR______ 
+Git add . 
+Git commit -m “feat: コミット名” 
+Git push origin branch
+PR
+(closes #2 みたいにイシュー番号を付ける) 
+>> コメントがあったら、
+修正して改めて git commit -m “fix: ~“
+add-commit-pushをして、PRをする。
+>> LGTMだったら、マージをする。 
+
+Git checkout develop
+Git fetch origin = refresh
+Git pull origin develop = Loca
+
+______delete_branch______ 
+git checkout develop 
+git push origin —delete feature/add_news_font git branch -D feature/add_news_font developのブランチを最新化(fetch, pull) 
+git checkout -b branch
+
+______rebase______
+git log→q
+git commit -m “”
+git push origin branch
+git rebase -i HEAD~2(個数)
+i(insert)
+pickを消してsへ変更(1番上を残して)
+esc
+: コロン
+wq
+i
+#(上から)(コミット名編集もできる)
+esc
+:
+wq
+
+git push origin --force-with-lease branch
+(git push-f origin branch)
+git log→q
+
+
+______stash______
+一時的に保存する
+(developでブランチを切らずに編集してしまった場合、編集の差分を保存)
+
+developブランチで
+git stash -m “変更内容”
+git checkout -b feat/ブランチ
+git stash list（stashしたのは何番目なのか確認）
+git stash apply 0
+これで差分が入る
+〜 git add .
+
+______reset______
+git reset HEAD^^（一個だけなら^）
+git log
+git merge master（コンフリクト解消）
+git add .
+commit
+git push --force-with-lease origin branch
+git log
+
+______merge______
+git merge branch 結合したいブランチ上でを記載
+
+
+______conflict______
+(開いてるページ消してから開き直す)
+
+nodeで起動してるターミナルを消して
+checkout master
+fetch
+pull
+ブランチ行って
+git merge master
+add .
+commit fix: コンフリクト
+push
+
+
+______memo______
+
+・ブランチ名：大文字は使わない/ケバブケース
+・feat: の後にスペースいる
+・PRはpull request 
+・feat: 新しい機能追加(プリフィート)
+・fix: 修正
+・checkout -b branch はブランチ作成
+・checkout branch はブランチに移動
+・closes #ナンバー
+・git push origin branch : Remote <<<< Local
+(今いるブランチしかリモートに移動できない
+originはgit上にブランチをlocalからremoteにあげること)
