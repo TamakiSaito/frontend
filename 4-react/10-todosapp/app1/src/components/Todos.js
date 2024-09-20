@@ -35,7 +35,7 @@ export default function Todos() {
     );
   });
 
-  // Insert
+  // Insert setTodosに(addItem)を入れて変更させる;
   const addTodo = (inputText) => {
     const addItem = [...todos, { id: todoKey, title: inputText }];
     setTodoKey(todoKey + 1);
