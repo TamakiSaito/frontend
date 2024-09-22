@@ -4,6 +4,7 @@ import "./Todos.css";
 export default function Todos() {
   const [todos, setTodos] = useState([]);
   const [inputText, setInputText] = useState("");
+  // keyが重複しないように作成
   const [todoKey, setTodoKey] = useState(0);
 
   // Mounted
@@ -35,15 +36,21 @@ export default function Todos() {
     );
   });
 
-  // Insert setTodosに(addItem)を入れて変更させる;
+  // Insert 
+  // setTodosに(addItem)を入れて変更させる
+  // inputTextにSENDボタンを押したものが入って
+  // { id: todoKey, title: inputText }に表示させる
   const addTodo = (inputText) => {
     const addItem = [...todos, { id: todoKey, title: inputText }];
+    // 既存のkey + 1
     setTodoKey(todoKey + 1);
     setTodos(addItem);
+    // SENDボタンを押したらテキストをクリアする
     setInputText("");
   };
 
   // Delete
+  // もらったidと同じだったら削除
   const delTodo = (id) => {
     const delItem = todos.filter((item) => {
       return item.id !== id;
@@ -67,10 +74,12 @@ export default function Todos() {
           type="text"
           placeholder="New Todo"
           value={inputText}
+          // inputTextの中身を変更する
           onChange={(e) => {
             setInputText(e.target.value);
           }}
         ></input>
+        {/* SENDボタンをクリックしたらinputTextの内容をaddTodoに */}
         <button onClick={() => addTodo(inputText)}>SEND</button>
       </div>
       <div>{render}</div>
