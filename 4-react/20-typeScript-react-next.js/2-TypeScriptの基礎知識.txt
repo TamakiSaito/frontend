@@ -1,0 +1,19 @@
+1. TypeScriptの基礎知識
+
+  -- TypeScript : 静的な型付け機能を搭載された、AltUS
+                  TypeScriptでは変数や引数名の後ろに": 型"のように、型注釈と言われる型情報を付与することで
+                  変数や引数に格納する値を制限できる
+
+
+1. 型定義
+
+  -- 変数 : var 変数: 型 = 値
+           let 変数: 型 = 値
+           const 変数: 型 = 値
+
+  -- Primitive Type(値参照) : string(文字列) / number(数値) / boolean(真偽値)
+
+  -- Referencial Type(住所参照) : Array(配列)
+                                 Object(オブジェクト)
+                                 any
+                                 Function(関数)
