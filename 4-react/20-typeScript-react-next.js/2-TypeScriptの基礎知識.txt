@@ -7,13 +7,49 @@
 
 1. 型定義
 
-  -- 変数 : var 変数: 型 = 値
-           let 変数: 型 = 値
-           const 変数: 型 = 値
+  -- 変数 : var 変数: 型 = 値 "関数の中で宣言すると、その関数全体で使える。（関数スコープ）"
+           let 変数: 型 = 値 "{} で囲まれたブロックの中だけで使える。（ブロックスコープ）"
+            ※letを使って変数を宣言した場合、varで宣言された変数のスコープがその変数を含む関数まで利用できる状態になることとは異なり、ブロックスコープで宣言された変数は、その変数を含むロック内でしか参照可能になりません
+           const 変数: 型 = 値 "{} で囲まれたブロックの中だけで使える。（ブロックスコープ）"
 
-  -- Primitive Type(値参照) : string(文字列) / number(数値) / boolean(真偽値)
+  -- Primitive Type(値参照) : ① string(文字列)
+                             ② number(数値)
+                             ③ boolean(真偽値)
 
-  -- Referencial Type(住所参照) : Array(配列)
-                                 Object(オブジェクト)
-                                 any
-                                 Function(関数)
+  -- Referencial Type(住所参照) : ① Array(配列) : [] / const array: string[] = []
+                                   ※Primetive以外にも、Interface、Ailiasなどにも対応
+
+                                   Array<string> : 文字列要素を持つ配列(ジェネリック)
+
+                                 ② Object(オブジェクト) / key: value = property
+                                 ③ Any
+                                 ④ Function(関数)
+
+  -- typeof演算子 :  JavaScriptの値のデータ型を調べるもの
+                    console.log(typeof 42);             // "number"（数値型）
+                    console.log(typeof 'Hello');        // "string"（文字列型）
+                    console.log(typeof true);           // "boolean"（真偽型）
+                    console.log(typeof {});             // "object"（オブジェクト型）
+                    console.log(typeof []);             // "object"（配列もオブジェクト型）
+                    console.log(typeof undefined);      // "undefined"（未定義）
+                    console.log(typeof null);           // "object"（nullもobjectとして扱われる特殊なケース）
+                    console.log(typeof function(){});   // "function"（関数型） 
+
+  -- Generic / ジェネリック型 : 「何か特定の型に依存しない」コードを作るために使う / Array<T>
+                              型をパラメーター化して、異なる型にも対応できる柔軟なコードを作る仕組み
+
+  -- Union / ユニオン型 : 複数の型のいずれか一つを許可する型 / string | number
+
+  -- タプル : 異なる型の要素を固定された順序で保持するデータ構造
+_______________________
+  ___________________
+  function add(a, b) {
+    return a + b;
+  }
+  console.log(add(3, 5));
+  ___________________
+  -- Prammeter / パラメーター : 関数やメゾットを定義する時に使用する変数名
+                              ※ a や b がパラメーター
+  -- Argument / 引数 : 実際に関数を呼び出す時に渡す具体的な値
+                      ※ add(3, 5) の 3 と 5 が引数です
+_______________________
