@@ -22,8 +22,46 @@
                                    Array<string> : 文字列要素を持つ配列(ジェネリック)
 
                                  ② Object(オブジェクト) / key: value = property
-                                 ③ Any
-                                 ④ Function(関数)
+                                    ※ "?"を用いてオプショナル(省略可能)なプロパティとして指定可 
+
+                                    type Person = {
+                                      name: string;
+                                      age: number;
+                                      isHumen?: boolean;
+                                    };
+
+                                    const person: Person {
+                                      name: "Micheal"
+                                      age: 15
+                                      isHumen: false
+                                    };
+
+                                 ③ Any : 全ての型を許容する型
+
+                                 ④ Function : "引数"と"戻り値"に対して型定義
+                                              オプショナルな引数は、末尾に"?"
+
+                                    function sayHello(name: string, greeting?: string): string {
+                                      return `${greeting || ''} ${name}`
+                                    }
+                                    sayHello('Micheal') // Micheal
+                                    sayHello('Micheal', 'Hello') // Hello Micheal
+
+                                    --- --- ---
+
+                                              引数定義の際にデフォルト値を指定可
+                                    
+                                    function sayHello(name: string, greeting: string='Hello'): string {
+                                      return `${greeting} ${name}`
+                                    }
+                                    sayHello('Micheal') // Hello Micheal
+                                    sayHello('Micheal', 'Hey') // Hey Micheal
+
+                                    --- --- ---
+
+                                              関数を引数にとる関数の型
+
+                                    
 
   -- typeof演算子 :  JavaScriptの値のデータ型を調べるもの
                     console.log(typeof 42);             // "number"（数値型）
@@ -53,3 +91,6 @@ _______________________
   -- Argument / 引数 : 実際に関数を呼び出す時に渡す具体的な値
                       ※ add(3, 5) の 3 と 5 が引数です
 _______________________
+
+ -- class : オブジェクトの性質と動作を定義した設計図 (名前、身長、体重)
+ -- Instance : クラスに基づいて作られたオブジェクト (マイケル、110、110)
