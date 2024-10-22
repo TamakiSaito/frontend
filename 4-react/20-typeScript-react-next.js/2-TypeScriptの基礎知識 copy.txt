@@ -78,7 +78,8 @@
 
   -- Union / ユニオン型 : 複数の型のいずれか一つを許可する型 / string | number
 
-  -- タプル : 異なる型の要素を固定された順序で保持するデータ構造
+  -- Tuple / タプル : 異なる型の要素を固定された順序で保持するデータ構造
+
 _______________________
   ___________________
   function add(a, b) {
@@ -94,3 +95,51 @@ _______________________
 
  -- class : オブジェクトの性質と動作を定義した設計図 (名前、身長、体重)
  -- Instance : クラスに基づいて作られたオブジェクト (マイケル、110、110)
+
+
+1. 基本的な型の機能
+
+  -- 型推論 : コード上で明示的に型を指定しなくても型を推論する
+
+  -- 型アサーション : 型推論が間違っている場合や、より具体的に型を指定したい場合 / 変数 = ( 値 as 型 ) as 型
+                  ※実行時にエラーを引き起こす可能性があるので注意
+
+                  let someValue: any = "Hello, World!";
+
+                  // 型アサーションを使って、この値が文字列であることを明示する
+                  let strLength: number = (someValue as string).length;
+
+  -- 型エイリアス : 型の定義に名前をつけられる機能 / type 変数名 = 型
+    ∟ -- インデックス型 : オブジェクトのキー名を明記せずに型エイリアスを定義可 / { []: 型名 }
+                      ※キー名やキー数が事前に定まらないケースのオブジェクトを定義したい時に便利
+
+                      type NumberDictionary = {
+                        [key: string]: number; // キーは文字列、値は数値
+                      };
+                      
+                      // この型を使ったオブジェクトの例
+                      const ages: NumberDictionary = {
+                        Alice: 30,
+                        Bob: 25,
+                        Charlie: 35,
+                      };
+                      
+                      console.log(ages.Alice); // 30
+                      console.log(ages.Bob);   // 25
+
+  -- Interface / インターフェイス : オブジェクトの構造を定義する機能
+
+                                interface Employee extends Person {
+                                  employeeId: number; // 社員ID
+                                }
+                                
+                                const jane: Employee = {
+                                  name: "Jane",
+                                  age: 25,
+                                  employeeId: 123,
+                                  greet: () => {
+                                    console.log(`Hello, my name is ${jane.name} and my ID is ${jane.employeeId}.`);
+                                  }
+                                };
+                                
+                                jane.greet(); // "Hello, my name is Jane and my ID is 123."
