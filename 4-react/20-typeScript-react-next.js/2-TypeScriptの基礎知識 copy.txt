@@ -73,8 +73,8 @@
                     console.log(typeof null);           // "object"（nullもobjectとして扱われる特殊なケース）
                     console.log(typeof function(){});   // "function"（関数型） 
 
-  -- Generic / ジェネリック型 : 「何か特定の型に依存しない」コードを作るために使う / Array<T>
-                              型をパラメーター化して、異なる型にも対応できる柔軟なコードを作る仕組み
+  -- Generic / ジェネリック型 : 様々な型に対応できるようにする型 / Array<T>
+                              <T> の部分で型パラメータを指定する、異なる型にも対応できる柔軟なコードを作る仕組み
 
   -- Union / ユニオン型 : 複数の型のいずれか一つを許可する型 / string | number
 
@@ -172,3 +172,35 @@ _______________________
                     ※デフォルトではすべてのプロパティやメソッドはpublic
       ∟ -- Private : クラス内部でのみアクセス可 ※カプセル化の為に使用(クラスの外部やサブクラスからはアクセスできない)
       ∟ -- Protected : クラス内部および、サブクラス(継承したクラス)のみアクセス可（クラスの外部からはアクセスできないが、継承したクラスからはアクセスできる）
+
+
+1. 実際の開発で重要な型
+
+  -- Enum型 / 列挙型 : 特定の値の集合を名前付きで定義できるデータ型
+                     ※JavaScriptには無い機能。TypeScriptが拡張した機能
+                     ・状態管理（成功、失敗、待機など）
+                     ・曜日や月のように決まった選択肢を扱う場合
+                     ・エラーメッセージやステータスコードの管理（例: HTTPステータスコード）
+                     
+                     enum Day {
+                      Sunday,
+                      Monday,
+                      Tuesday,
+                      Wednesday,
+                      Thursday,
+                      Friday,
+                      Saturday
+                    }
+                    
+                    let today: Day = Day.Monday;
+                    console.log(today); // 出力: 1
+
+  -- Intersection / インターセクション型 : 複数の型をマージして1つになった型 / type ExtendedInfo = Type1 & Type2 & Type3...;
+
+  -- Literal / リテラル型 : 決まった文字列や数値しか入らない型
+
+                          let fruit: "apple" | "banana" | "orange";
+                          fruit = "apple";   // OK
+                          fruit = "banana";  // OK
+                          fruit = "orange";  // OK
+                          fruit = "grape";   // エラー: 型 '"grape"' を型 '"apple" | "banana" | "orange"' に割り当てることはできません。
