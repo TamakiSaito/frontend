@@ -204,3 +204,39 @@ _______________________
                           fruit = "banana";  // OK
                           fruit = "orange";  // OK
                           fruit = "grape";   // エラー: 型 '"grape"' を型 '"apple" | "banana" | "orange"' に割り当てることはできません。
+
+  -- never型 : 値を返さない・処理が決して終わらない・全ての可能なケースが除外されているということを表す型
+              ・エラーハンドリング関数
+              function throwError(message: string): never {
+                throw new Error(message);
+              }
+
+              ・無限ループ
+              function infiniteLoop(): never {
+                while (true) {
+                    // 無限ループ
+                }
+              }
+
+              ・型ガード
+              type Animal = "dog" | "cat";
+
+              function checkAnimal(animal: Animal): string {
+                  if (animal === "dog") {
+                      return "It's a dog!";
+                  } else if (animal === "cat") {
+                      return "It's a cat!";
+                  }
+                  // ここで animal の型は never 型になる
+                  // 全ケースを処理したのでここには到達しないことを示す
+                  return animal;
+              }
+
+  -- throw : 「エラーを起こす」という命令
+
+
+1. TypeScriptのテクニック
+
+  -- ネスト : 入れ子、構造が何層にも重なっていること
+  
+  
