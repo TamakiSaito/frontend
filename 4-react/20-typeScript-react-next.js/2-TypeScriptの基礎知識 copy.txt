@@ -239,4 +239,47 @@ _______________________
 
   -- ネスト : 入れ子、構造が何層にも重なっていること
   
-  
+  -- Optional Chanining : オブジェクトのプロパティやメゾットにアクセスする時に、
+                          そのプロパティやメゾットが存在しない場合でもエラーを返さずに、undefinedを返す記法(?)
+                          
+                          const user = {
+                            name: "Alice",
+                            address: {
+                              city: "Wonderland",
+                            },
+                          };
+
+                          // 通常のアクセス
+                          console.log(user.address.city); // Wonderland
+
+                          // オプショナルチェイニングを使ったアクセス
+                          console.log(user.address?.city); // Wonderland
+
+                          // オプショナルチェイニングで安全にアクセス
+                          console.log(user.profile?.age); // undefined（エラーにならずundefinedが返される）
+
+  -- Non-null Assertion Operator / ノンヌルアサーション演算子 : TypeScriptで使える演算子「!」のこと
+                                                            変数やプロパティの後に演算子を付けることで、
+                                                            その値がnullやundefinedではないことを証明することができる
+
+                                                            function greet(name: string | null) {
+                                                              // nameがnullの場合もあるけど、絶対にnullじゃないと保証できる場合
+                                                              console.log("Hello, " + name!); 
+                                                            }
+                                                            
+                                                            greet("Alice"); // Hello, Alice
+
+  -- 型ガード : 条件分地にて型のチェックを行った際、その条件分岐ブロック以降は変数の型を絞り込まれる推論がw行われること
+
+              function printId(id: number | string | boolean) {
+                if (typeof id === "string") {
+                  // このブロック内では id は string 型
+                  console.log("ID in uppercase: " + id.toUpperCase());
+                } else if (typeof id === "number") {
+                  // ここでは id は number 型
+                  console.log("ID: " + id);
+                } else {
+                  // ここでは id は boolean 型
+                  console.log("Boolean ID: " + id);
+                }
+              }
