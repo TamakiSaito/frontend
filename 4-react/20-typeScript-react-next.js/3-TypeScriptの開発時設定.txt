@@ -1,0 +1,10 @@
+1. TypeScriptの開発時設定
+
+ -- tsconfig.json
+ -- Prettier
+ -- ESLint
+
+ -- コンパイルオプション
+    -- nolmplicitAny
+    -- strictNullChecks
+    -- target
