@@ -87,7 +87,7 @@ for (let i = 1; i < arr10.length; i++) {
     min = i
   }
 }
-console.log(min)
+console.log('min: ',min)
 // console.log(max)
 
 
