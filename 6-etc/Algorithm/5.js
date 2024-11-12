@@ -78,6 +78,12 @@ console.log(result);
 
 // 問題(難易度2/3):arr5の各値の2乗の総和を求める反復文を作ってみよう
 const arr5 = [2, 5, 10];
+let num2 = 0;
+
+arr5.forEach(value => {
+  num2 += value ** 2
+})
+console.log(num2)
 
 
 // 問題 (難易度 2/3) (if文必要) : arr5 から 3 の倍数のもののみ (arr[i] % 3 = 0) 出力してください。

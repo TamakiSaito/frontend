@@ -20,22 +20,6 @@ const arr = [64, 34, 25, 12, 22, 11, 90];
 // }
 // console.log(arr);
 
-// function bubbleSort2(arr) {
-//   arr.forEach((_, i) => {
-//     arr.slice(0, arr.length - i - 1).forEach((_, j) => {
-//       if (arr[j] > arr[j + 1]) {
-//         let temp = arr[j]
-//         arr[j] = arr[j + i]
-//         arr[j + 1] = temp
-//       }
-//     })
-//   })
-//   return arr
-// }
-
-// console.log(bubbleSort2(arr))
-
-// 답2: 고차함수를 사용한 버블 정렬
 function bubbleSort2(arr) {
   arr.forEach((_, i) => {
     arr.slice(0, arr.length - i - 1).forEach((_, j) => {
@@ -48,4 +32,20 @@ function bubbleSort2(arr) {
   })
   return arr
 }
-console.log(bubbleSort2(arr)) // [2, 4, 7, 9, 11, 11, 13, 13, 13]
+
+console.log(bubbleSort2(arr))
+
+// 답2: 고차함수를 사용한 버블 정렬
+// function bubbleSort2(arr) {
+//   arr.forEach((_, i) => {
+//     arr.slice(0, arr.length - i - 1).forEach((_, j) => {
+//       if (arr[j] > arr[j + 1]) {
+//         let temp = arr[j]
+//         arr[j] = arr[j + 1]
+//         arr[j + 1] = temp
+//       }
+//     })
+//   })
+//   return arr
+// }
+// console.log(bubbleSort2(arr)) // [2, 4, 7, 9, 11, 11, 13, 13, 13]
