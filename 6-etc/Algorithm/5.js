@@ -77,7 +77,7 @@ const result = arr4.map(num => num ** 3);
 console.log(result); 
 
 // 問題(難易度2/3):arr5の各値の2乗の総和を求める反復文を作ってみよう
-const arr5 = [2, 5, 10];
+const arr5 = [2, 5, 10, 12];
 let num2 = 0;
 
 arr5.forEach(value => {
@@ -87,8 +87,40 @@ console.log(num2)
 
 
 // 問題 (難易度 2/3) (if文必要) : arr5 から 3 の倍数のもののみ (arr[i] % 3 = 0) 出力してください。
+arr5.forEach(value2 => { 
+  if (value2 % 3 === 0) {
+    console.log(value2);
+  }
+});
+
 // 問題(難易度2/3) (if文と&&必要):1から20未満の整数のうち、2または3の倍数の合計を求めなさい。
+const arr6 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+let sum3 = 0;
+
+for (let i = 0; i < arr6.length; i++) {
+  if (arr6[i] % 2 === 0 && arr6[i] % 3 === 0) {
+    sum3 += arr6[i];
+  }
+}
+console.log(sum3);
+
+
 // 問題(難易度3/3)(if文必須):[52、273、103、32、57、103、31、2]のような数字配列が与えられる時、配列内部で最大値と最小値を探すコードを作れ。
+const arr7 = [52, 273, 103, 32, 57, 103, 31, 2];
+let max = arr7[0];
+let min = arr7[0];
+
+for (let i = 1; i < arr7.length; i++) {
+  if (arr7[i] > max) {
+    max = arr7[i];
+  }
+  if (arr7[i] < min) {
+    min = arr7[i];
+  }
+}
+console.log("最大値: ",max);
+console.log("最小値: ",min);
+
 // 問題(難易度3/3)(2重for文):2つのサイコロを投げたとき、目の合計が6になるすべての場合の数を出力してください。
 // const dice1 = [1, 2,]
 // const dice2 = [1, 2,]
