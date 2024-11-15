@@ -122,10 +122,21 @@ console.log("最大値: ",max);
 console.log("最小値: ",min);
 
 // 問題(難易度3/3)(2重for文):2つのサイコロを投げたとき、目の合計が6になるすべての場合の数を出力してください。
-// const dice1 = [1, 2,]
-// const dice2 = [1, 2,]
-// dice1.forEach((item) => 
-// )
+const dice1 = [1, 2, 3, 4, 5, 6]
+const dice2 = [1, 2, 3, 4, 5, 6]
+dice1.forEach((item1) => dice2.forEach((item2) => {
+  if (item1 + item2 === 6) 
+  console.log("[" + item1 + "," + " " + item2 + "]")
+  }
+))
+
+for (let dice3 = 1; dice3 <= 6; dice3++) {
+  for(let dice4 = 1; dice4 <= 6; dice4++) {
+    if (dice3 + dice4 === 6) {
+      console.log(`サイコロ1: ${dice3}, サイコロ2: ${dice4}`);
+    }
+  }
+}
 // [ 1, 5 ]
 // [ 2, 4 ]
 // [ 3, 3 ]
