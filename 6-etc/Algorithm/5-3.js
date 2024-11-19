@@ -23,27 +23,70 @@ if (x > 10 && x < 20) {
 }
 
 // 問題:変数yが10より大きいか、20より小さいときに変数yを出力する条件式を完成させなさい。
-
+let y = 15;
+if (y > 10 || y < 20) {
+  console.log(y);
+}
 
 // 問題:変数x2に3をかけた値が10より大きい場合、変数x2を出力する条件式を完成させる。
+let x2 = 5;
+if (x2 * 3 > 10) {
+  console.log(x2);
+}
 
 // 問題:y1を1と宣言せよ。
-const y1 = 1;
-const y2 = 2;
-const x3 = 3;
+let y1 = 1;
+let y2 = 2;
+let x3 = 3;
 // 問題:変数y2に5をかけた値がx3より大きい場合、変数x3を出力する条件式を完成させる。
+if (y2 * 5 > x3) {
+  console.log(x3);
+}
 
 // 問題(難易度1/3):arrのすべての値の総合を求める反復文を作ってみよう。
+const arr2 = [2, 4, 6, 8];
+let sum = 0;
+// for (let i = 0; i < arr2.length; i++) {
+//   sum += arr2[i];
+// }
+// console.log(sum);
 
+arr2.forEach((value) => {
+  sum += value;
+})
+console.log(`arr2の総合値は${sum}です`);
 
 // 問題(難易度 1/3):0から10未満の足すコードを作れ。
-
+let sum2 = 0;
+for (let i = 0; i < 10; i++) {
+  sum2 += i;
+}
+console.log(`0から10未満を足した合計値は${sum2}`)
 
 // 問題(難易度 1/3):1から10までかけるコードを作れ。
+let num = 1;
+// for (let i = 1; i <= 10; i++) {
+//   num *= i;
+// }
+// console.log(num);
 
 
 // 問題(難易度2/3):arr2のすべての値を立方(**3)した値をそれぞれ出力する。
-// 上に式ある：const arr2 = [2, 4, 6, 8, 10];
+const arr3 = [2, 4, 6, 8, 10];
+
+// for
+// for (let i = 0; i < arr3.length; i++) {
+//   console.log(arr3[i] ** 3);
+// };
+
+// forEach
+// arr3.forEach((value) => {
+//   console.log(value ** 3);
+// });
+
+// map 配列で出力
+const cubedValues = arr3.map((value) => value ** 3);
+console.log(cubedValues);
 
 // 問題(難易度2/3):arr4のすべての値がそれぞれ立方(**3)になった配列を出力する。
 
