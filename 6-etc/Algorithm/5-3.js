@@ -89,9 +89,25 @@ const cubedValues = arr3.map((value) => value ** 3);
 console.log(cubedValues);
 
 // 問題(難易度2/3):arr4のすべての値がそれぞれ立方(**3)になった配列を出力する。
+const arr4 = [1, 3, 5, 7];
+
+// for
+// let cubedArray = [];
+// for (let i = 0; i < arr4.length; i++) {
+//   cubedArray.push(arr4[i] ** 3);
+// }
+// console.log(cubedArray);
+
+// forEach
+// arr4.forEach((value) => {
+//   cubedArray.push(value ** 3);
+// });
+// console.log(cubedArray);
+
+const cubedValues2 = arr4.map((value) => value ** 3);
+console.log(cubedValues2);
 
 // 問題(難易度2/3):arr5の各値の2乗の総和を求める反復文を作ってみよう
-
 
 // 問題 (難易度 2/3) (if文必要) : arr5 から 3 の倍数のもののみ (arr[i] % 3 = 0) 出力してください。
 
