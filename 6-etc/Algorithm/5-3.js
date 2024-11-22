@@ -108,8 +108,20 @@ const cubedValues2 = arr4.map((value) => value ** 3);
 console.log(cubedValues2);
 
 // 問題(難易度2/3):arr5の各値の2乗の総和を求める反復文を作ってみよう
+const arr5 = [10, 20, 30];
+// let sum3 = 0;
+// for (let i = 0; i < arr5.length; i++) {
+//   sum3 += arr5[i] ** 2;
+// };
+// console.log(sum3);
+
 
 // 問題 (難易度 2/3) (if文必要) : arr5 から 3 の倍数のもののみ (arr[i] % 3 = 0) 出力してください。
+arr5.forEach(value => {
+  if (value % 3 === 0) {
+    console.log(value);
+  }
+});
 
 // 問題(難易度2/3) (if文と&&必要):1から20未満の整数のうち、2または3の倍数の合計を求めなさい。
 
