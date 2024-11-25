@@ -134,7 +134,20 @@ for (let i = 1; i < 20; i++) {
 console.log(sum3);
 
 // 問題(難易度3/3)(if文必須):[52、273、103、32、57、103、31、2]のような数字配列が与えられる時、配列内部で最大値と最小値を探すコードを作れ。
+const arr6 = [52, 273, 103, 32, 57, 103, 31, 2];
+let min = arr6[0];
+let max = arr6[0];
 
+for (let i = 0; i < arr6.length; i++) {
+  if (arr6[i] < min) {
+    min = arr6[i];
+  }
+  if (arr6[i] > max) {
+    max = arr6[i];
+  }
+}
+console.log("最小値:", min);
+console.log("最大値", max);
 
 // 問題(難易度3/3)(2重for文):2つのサイコロを投げたとき、目の合計が6になるすべての場合の数を出力してください。
 
