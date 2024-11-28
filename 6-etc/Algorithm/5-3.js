@@ -153,13 +153,19 @@ console.log("最大値", max);
 const dice1 = [1, 2, 3, 4, 5, 6];
 const dice2 = [1, 2, 3, 4, 5, 6];
 
-for (let dice1 = 1; dice1 <= 6; dice1++) {
-  for (let dice2 = 1; dice2 <= 6; dice2++) {
-    if (dice1 + dice2 === 6) {
-      console.log(`サイコロ1: ${dice1}, サイコロ2: ${dice2}`);
-    }
+// for (let dice1 = 1; dice1 <= 6; dice1++) {
+//   for (let dice2 = 1; dice2 <= 6; dice2++) {
+//     if (dice1 + dice2 === 6) {
+//       console.log(`サイコロ1: ${dice1}, サイコロ2: ${dice2}`);
+//     }
+//   }
+// }
+
+dice1.forEach((item1) => dice2.forEach((item2) => {
+  if (item1 + item2 === 6) {
+    console.log("[" + item1 + "," + item2 + "]")
   }
-}
+}))
 // [ 1, 5 ]
 // [ 2, 4 ]
 // [ 3, 3 ]
