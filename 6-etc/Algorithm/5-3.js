@@ -74,12 +74,12 @@ let num = 1;
 // 問題(難易度2/3):arr2のすべての値を立方(**3)した値をそれぞれ出力する。
 const arr3 = [2, 4, 6, 8, 10];
 
-// for
+// for -> 値をそれぞれを出力する時は「forの条件文にconsoleで出力」
 // for (let i = 0; i < arr3.length; i++) {
 //   console.log(arr3[i] ** 3);
 // };
 
-// forEach
+// forEach -> 値をそれぞれを出力する時は「forの条件文にconsoleで出力」
 // arr3.forEach((value) => {
 //   console.log(value ** 3);
 // });
@@ -91,14 +91,14 @@ console.log(cubedValues);
 // 問題(難易度2/3):arr4のすべての値がそれぞれ立方(**3)になった配列を出力する。
 const arr4 = [1, 3, 5, 7];
 
-// for
+// for -> 配列を出力する時は「push」
 // let cubedArray = [];
 // for (let i = 0; i < arr4.length; i++) {
 //   cubedArray.push(arr4[i] ** 3);
 // }
 // console.log(cubedArray);
 
-// forEach
+// forEach -> 配列を出力する時は「push」
 // arr4.forEach((value) => {
 //   cubedArray.push(value ** 3);
 // });

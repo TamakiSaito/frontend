@@ -131,7 +131,7 @@ dice1.forEach((item1) => dice2.forEach((item2) => {
 ))                                                                                                                                                                                
 
 for (let dice3 = 1; dice3 <= 6; dice3++) {
-  for(let dice4 = 1; dice4 <= 6; dice4++) {
+  for (let dice4 = 1; dice4 <= 6; dice4++) {
     if (dice3 + dice4 === 6) {
       console.log(`サイコロ1: ${dice3}, サイコロ2: ${dice4}`);
     }
