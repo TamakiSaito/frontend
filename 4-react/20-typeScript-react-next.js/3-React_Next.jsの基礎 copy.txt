@@ -11,3 +11,96 @@ $ npx creat-react-app [プロジェクト名]
 $ npx creat-react-app@latest react-sample --template typescript
 $ cd react-sample // プロジェクトのルートディレクトリ直下に移動
 $ npm run start // 開発サーバーを起動する
+
+
+-- React Hooks 
+  : React 16.8で導入された機能で、クラスコンポーネントを使用せずに関数コンポーネント内で状態管理やライフサイクル管理ができる仕組み
+
+  1. useState : 状態(state)を管理
+      const = [状態, 更新関数] = useState(初期値)
+        ・useState(引数1) → '引数1: 初期値'
+        ・戻り値は配列 : 配列の1番目に、現在の状態を表す変数, 2番目に更新関数
+          更新関数を呼び出すと状態が変化し、フックがあるコンポーネントは再描画される
+
+  1. useEffect : 副作用を管理（データ取得、DOM操作、タイマー設定など）
+
+  1. useReducer : useStateの代わりに複雑な状態管理を行うために使用します
+      reducer(現在の状態, action) {
+        return '次の状態'
+      }
+      const [現在の状態, dispatch] = useReducer(reducer, reducerに渡される初期状態)
+      ・dispatch関数にactionを渡す事で状態を更新できる
+
+      ・actionには通常、type（何をするのか）とpayload（必要な追加データ）が含まれる
+        dispatch({ type: 'addTodo', payload: { text: '新しいタスク' } });
+      
+      - useReducer使用例
+      ・状態管理が複数のアクションや条件分岐を含むとき
+      ・ひとつの状態に対して複数の状態変更ロジックが必要なとき
+      ・状態と更新ロジックを分離してコードを整理したいとき
+      
+  1. useMemo / useCallback : パフォーマンス最適化のために計算結果や関数をメモ化する
+     
+    -- useMemo : 計算コストの高い処理の結果をメモ化するためのHook
+                 再レンダリング時に不要な計算を避けることで、パフォーマンスを向上させる
+
+                  戻り値：値
+                  const memoizedValue = useMemo(
+                    () => {
+                      return 計算結果;
+                    },
+                    [依存する値]
+                  );
+
+                  - useMemo使用例
+                    ・計算コストが高い処理の結果をメモ化したいとき
+                      計算に時間がかかる処理があり、依存値が変わらない限り同じ結果を使いたい場合
+    
+    -- useCallback : 関数の再生成を防ぐためのHook
+                     Reactはコンポーネントが再レンダリングされる度に、関数が新しく生成されます。これを抑えるのがuseCallbackの目的
+
+                      戻り値：関数
+                      const memoizedCallback = useCallback(
+                        () => {
+                          // 実行する処理
+                        },
+                        [依存する値]
+                      );
+
+                      - useCallback使用例
+                        ・関数をpropsで渡す場合など、再生成を避けたいとき
+                          子コンポーネントに関数を渡すとき
+                          子コンポーネントに関数をpropsとして渡す場合、親が再レンダリングされると関数も再生成される
+                          このとき、子コンポーネントが不要に再レンダリングされるのを防ぐためにuseCallbackを使う
+
+  
+
+  1. useContext : コンテキストを利用して、データをコンポーネントツリー全体で共有する
+  1. useRef : DOMへの参照や状態の永続的な値を保持する
+
+
+-- Reactコンポーネントの種類
+  1. ステートを持つコンポーネント
+     内部で状態（state）を管理し、動的な変化を扱うコンポーネント
+     例: ボタンのカウンター、入力フォーム、APIデータを使うリスト
+
+  1. ステートを持たないコンポーネント
+     状態を持たず、表示だけを担当するシンプルなコンポーネント
+     例: ラベルやタイトル、親からデータを受け取って表示するだけのパーツ
+
+-- dispatch : actionを発行する関数
+              ReactのuseReducerフックやReduxで使われ、「どのような状態変更を行うか」をアプリに伝える役割
+
+              1. dispatchがすること
+                ・actionを指定してreducer関数に送る（「これをやって!」と指示を出す）
+                ・actionに基づいてreducer関数が新しい状態（state）を計算する
+
+              2. dispatchの仕組み
+                ・dispatchは単なる関数で、actionというオブジェクトを引数として受け取ります。
+                ・actionはtypeというキーを必ず含む。他に必要なデータはpayloadとして渡す。
+              
+              3. 役割の流れ
+                ①ユーザー操作が発生（ボタンを押すなど）
+                ②dispatchを呼び出す（「この操作をしてほしい」と伝える）
+                ③アクションがreducerに送られる
+                ④reducerが状態を更新（アクションの内容に基づいて）
