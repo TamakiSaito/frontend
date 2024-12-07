@@ -13,7 +13,7 @@ const CustomHook = () => {
     fetchData();
   }, []);
   // 「task」に(data.title)が表示される
-  return <div>{task}</div>
+  return <div>{task} + CustomHook</div>
 };
 
 export default CustomHook;

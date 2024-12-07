@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from './counter';
 import Button from './button';
 import CustomHook from './customHook';
+import CustomHookSecond from './customHookSecond';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Counter />
       <Button />
       <CustomHook />
+      <CustomHookSecond />
     </div>
   );
 }
