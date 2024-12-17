@@ -13,6 +13,9 @@ $ cd react-sample // プロジェクトのルートディレクトリ直下に�
 $ npm run start // 開発サーバーを起動する
 
 
+ -- Component : UIの最小単位であり、再利用可能な部品
+                ・Functional Component / 関数コンポーネント : Hooks(useState,useEffectなど)
+                ・Class Component / クラスコンポーネント : this.state で状態を管理し、this.setState で状態を更新
 
 
  -- Context : 深いコンポーネント階層において、props を使わずにデータを渡す仕組み
