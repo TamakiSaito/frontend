@@ -13,3 +13,67 @@ Watch Usage
   Press p to filter by a filename regex pattern.
   Press t to filter by a test name regex pattern.
   Press Enter to trigger a test run.
+
+
+1. クエリー種類
+-- ByLabelText: ByLabelTextは、labelのあるinputのlabel内容でinputを選択します。
+<label for="username-input">ID</label>
+  <input id="username-input" />
+const inputNode = getByLabelText('ID');
+
+-- ByPlaceholderText: ByPlaceholderTextは、placeholderの値でinputとtextareaを選択します。
+<input placeholder="ID" />;
+const inputNode = getByPlaceholderText('ID');
+
+-- ByText: ByTextは、エレメントが持っているテキスト値でDOMを選択します。
+<div>Hello World!</div>;
+const div = getByText('Hello World!');
+const div = getByText(//^Hello/); // ちなみに、テキスト値に正規式を入れても動作します。
+
+-- ByAltText: ByAltTextは、altプロパティを持つエレメント（主にimg）を選択します。
+<img src="/awesome.png" alt="awesome image" />;
+const imgAwesome = getByAltText('awesomse image');
+
+-- ByTitle: ByTitleは、titleプロパティを持つDOMあるいはtitleエレメントを持つSVGを選択するときに使用します。
+            titleプロパティは、htmlでツールチップを表示しなければならない状況で使用したりします。
+<p>
+  <span title="React">リアクト</span>は超素敵なライブラリーです。
+</p>
+<svg>
+  <title>Delete</title>
+    <g><path/></g>
+</svg>
+const spanReact = getByTitle('React');
+const svgDelete = getByTitle('Delete');
+
+-- ByDisplayValue: ByDisplayValueは、input、textarea、selectが持っている現在値を持ってエレメントを選択します。
+<input value="text" />;
+const input = getByDisplayValue('text');
+
+-- ByRole: ByRoleは特定のrole値を持つエレメントを選択します。
+<span role="button">삭제</span>;
+const spanRemove = getByRole('button');
+
+-- ByTestId: ByTestIdは、他の方法で選択できないときに使用する方法ですが、特定のDOMに直接テストするときに使用するidを付けて選択することを意味します。
+<div data-testid="commondiv">흔한 div</div>;
+const commonDiv = getByTestId('commondiv');
+
+* 注意
+camel Caseではありません。 値を設定する時、data-testid="..."このように設定しなければなりません。
+さらに、ByTestIdは他の方法で選択できない場合にのみ使用しなければなりません。
+
+
+1. どのようなクエリを使用する必要がありますか？
+クエリの種類が本当に多いですが、どのクエリを優先的に使用するべきでしょうか？
+マニュアルでは、以下の優先順位に従って使用することを推奨しています。
+getByLabelText
+getByPlaceholderText
+getByText
+getByDisplayValue
+getByAltText
+getByTitle
+getByRole
+getByTestId
+そして、DOMのquery Selectorを使用することもできますが、これは避けるべきです。 むしろ、data-testidを設定した方が良いです。
+const utils = render(<MyComponent />);
+const element = utils.container.querySelector('.my-class');
