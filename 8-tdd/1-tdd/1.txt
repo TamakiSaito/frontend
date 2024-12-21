@@ -1,0 +1,51 @@
+[TDD]
+
+Test Driven Development : テストを通過するための機能
+
+- Unit Test : 特定の機能をテストする
+- Integration Test : 複数の機能をテストする
+- End-to-End Test : システム全体をテストする(ユーザーベース) / Cypressライブラリを使ったりする
+
+Move
+Attack
+Gather
+
+- Unit Test : 
+CODE :
+  const move = () => {
+    ...
+    return sth;
+  }
+JEST :
+  test('move', () => {
+    expecte(move().toBe(sth));
+  });
+
+- Integration Test : 
+CODE :
+  const move = () => {
+    ...
+    return sth;
+  },
+  const attack = () => {
+    ...
+    return sth;
+  },
+  const gather = () => {
+    ...
+    return sth;
+  }
+  JEST :
+  test('move', () => {
+   // move -> attack -> gather
+   ...
+    expecte(result().toBe(sth));
+  });
+
+- End-to-End Test : 実際にゲームをして、結果を確認する
+
+- JEST以外にも
+  Mocha
+  Karma
+  Jasmin
+  Chai
