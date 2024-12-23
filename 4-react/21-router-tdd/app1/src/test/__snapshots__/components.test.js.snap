@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Count />のレンダリングテスト Snapshot test 1`] = `
+<div>
+  <button>
+    +
+  </button>
+  <button>
+    -
+  </button>
+  <div>
+    Count 
+    0
+  </div>
+</div>
+`;
+
+exports[`<Movies />のレンダリングテスト Snapshot test 1`] = `
+<div>
+  <div>
+    <h1>
+      Movies
+    </h1>
+    <div />
+  </div>
+</div>
+`;
