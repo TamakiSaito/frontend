@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Movie.css";
 
 export default function Movies() {
@@ -11,7 +10,6 @@ export default function Movies() {
 
   // mounted
   useEffect(() => {
-    //fetch("https://yts.mx/api/v2/list_movies.json?sort_by=rating")
     fetch("https://yts.mx/api/v2/list_movies.json")
       .then((res) => res.json())
       .then((json) => {
@@ -19,27 +17,25 @@ export default function Movies() {
       });
   }, []);
 
-  console.log("movies: ", movies);
-
   const render = movies.map((movie) => {
     return (
       <div key={movie.id}>
         <a className="movieTitle" href={movie.url}>
-          {movie.title}({movie.year})
+          {movie.title} ({movie.year})
         </a>
         <div>
           評価:
           <span className={movieRatingClass(movie.rating)}>{movie.rating}</span>
           /10点
         </div>
-        <div>ジャンル:{movie.gernes.join(", ")}</div>
-        <div>ランタイム:{movie.runtime}分</div>
-        <div>ストーリー:{movie.synopsis || "情報なし"}</div>
+        <div>ジャンル: {movie.genres.join(", ")}</div>
+        <div>ランタイム: {movie.runtime}分</div>
+        <div>ストーリー: {movie.synopsis || "情報なし"}</div>
         <img
-          clasName="movieImg"
+          className="movieImg"
           src={movie.large_cover_image}
           alt={movie.title}
-        ></img>
+        />
       </div>
     );
   });
