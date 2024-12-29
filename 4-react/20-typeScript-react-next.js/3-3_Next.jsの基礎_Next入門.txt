@@ -1,7 +1,12 @@
 1. Next.js入門
 
 -- プロジェクトのセットアップ
+  $ create-next-app <プロジェクト名>
+    --ts : オプションをつけるとTypeScript向けのプロジェクトが作成される
 
+  // next-sampleと言う新規のNext.jsプロジェクト作成
+  $ npx create-next-app@latest --ts next-sample
+  $ npm run dev
 
 -- レンダリング手法(4つ)
   ① SSG(Static Site Generation) / 静的サイト生成 : HTMLを事前生成して高速に配信するための仕組み

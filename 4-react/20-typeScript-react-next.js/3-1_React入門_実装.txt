@@ -3,7 +3,7 @@
 -- React実装
 $ npx creat-react-app [プロジェクト名]
   
-  -- `--template`引数を与えると、他のコードテンプレートを使用したプロジェクトを構築できます
+  -- `--template`引数を与えると、他のコードテンプレートを使用したプロジェクトを構築できる
   -- TypeScriptで型を付けられたプロジェクトを作成
      $ --template typescript
 --
