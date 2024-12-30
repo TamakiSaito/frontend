@@ -1,14 +1,14 @@
 1. React入門
 
 -- React実装
-$ npx creat-react-app [プロジェクト名]
+$ npx create-react-app [プロジェクト名]
   
   -- `--template`引数を与えると、他のコードテンプレートを使用したプロジェクトを構築できる
   -- TypeScriptで型を付けられたプロジェクトを作成
      $ --template typescript
 --
 
-$ npx creat-react-app@latest react-sample --template typescript
+$ npx create-react-app@latest react-sample --template typescript
 $ cd react-sample // プロジェクトのルートディレクトリ直下に移動
 $ npm run start // 開発サーバーを起動する
 
