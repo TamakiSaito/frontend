@@ -31,102 +31,76 @@ describe("<Count />のレンダリングテスト", () => {
   });
 });
 
-// describe("<Movies />のレンダリングテスト", () => {
-//   beforeEach(() => {
-//     global.fetch = jest.fn(() =>
-//       Promise.resolve({
-//         json: () =>
-//           Promise.resolve({
-//             data: {
-//               movies: [
-//                 {
-//                   id: 1,
-//                   title: "Inception",
-//                   year: 2010,
-//                   rating: 8.8,
-//                   genres: ["Action", "Sci-Fi"],
-//                   runtime: 148,
-//                   synopsis: "A thief who steals corporate secrets...",
-//                   url: "https://example.com/inception",
-//                   large_cover_image: "https://example.com/inception.jpg",
-//                 },
-//               ],
-//             },
-//           }),
-//       })
-//     );
-//   });
+describe("<Movies />の関数テスト", () => {
+  describe("movieRatingClass 関数のテスト", () => {
+    const movieRatingClass = (rating) =>
+      rating >= 9 ? "good" : rating >= 7 ? "soso" : "bad";
 
-//   afterEach(() => {
-//     jest.clearAllMocks();
-//   });
+    it("評価が9以上なら 'good' を返す", () => {
+      expect(movieRatingClass(9)).toBe("good");
+      expect(movieRatingClass(10)).toBe("good");
+    });
 
-//   it("Snapshot test", async () => {
-//     const { container } = render(<Movies />);
-//     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
-//     expect(container).toMatchSnapshot();
-//   });
+    it("評価が7以上9未満なら 'soso' を返す", () => {
+      expect(movieRatingClass(7)).toBe("soso");
+      expect(movieRatingClass(8.9)).toBe("soso");
+    });
 
-//   it("映画データが正しく表示されること", async () => {
-//     render(<Movies />);
-  
-//     // fetch が呼び出されるのを待つ
-//     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-  
-//     // 映画データのタイトルが表示されることを確認
-//     expect(
-//       screen.getByText((content) => content.trim().includes("Inception"))
-//     ).toBeInTheDocument();
-  
-//     expect(
-//       screen.getByText((content) => content.trim().includes("(2010)"))
-//     ).toBeInTheDocument();
-  
-//     // 映画データの評価が表示されることを確認
-//     expect(
-//       screen.getByText((content) => content.trim().includes("評価:"))
-//     ).toBeInTheDocument();
-  
-//     expect(screen.getByText("8.8")).toBeInTheDocument();
-  
-//     // 映画データのジャンルが表示されることを確認
-//     expect(
-//       screen.getByText((content) => content.trim().includes("ジャンル: Action, Sci-Fi"))
-//     ).toBeInTheDocument();
-  
-//     // 映画データのランタイムが表示されることを確認
-//     expect(
-//       screen.getByText((content) => content.trim().includes("ランタイム: 148分"))
-//     ).toBeInTheDocument();
-  
-//     // 映画データのストーリーが表示されることを確認
-//     expect(
-//       screen.getByText((content) =>
-//         content.trim().includes("ストーリー: A thief who steals corporate secrets...")
-//       )
-//     ).toBeInTheDocument();
-//   });
-// });
+    it("評価が7未満なら 'bad' を返す", () => {
+      expect(movieRatingClass(6.9)).toBe("bad");
+      expect(movieRatingClass(0)).toBe("bad");
+    });
+  });
 
-// global.fetch = jest.fn(() =>
-//   Promise.resolve({
-//     json: () =>
-//       Promise.resolve([
-//         {
-//           id: 1,
-//           title: "Test News 1",
-//           user: "user1",
-//           url: "https://example.com/test-news-1",
-//         },
-//         {
-//           id: 2,
-//           title: "Test News 2",
-//           user: "user2",
-//           url: "https://example.com/test-news-2",
-//         },
-//       ]),
-//   })
-// );
+  describe("useEffect の動作テスト", () => {
+    beforeEach(() => {
+      jest.spyOn(global, "fetch").mockResolvedValue({
+        json: jest.fn().mockResolvedValue({
+          data: {
+            movies: [
+              {
+                id: 65829,
+                title: "The Playroom",
+                year: 2012,
+                rating: 5.3,
+                genres: ["Drama"],
+                runtime: 83,
+                synopsis: "",
+                url: "https://yts.mx/torrent/download/DE8172D9D0303B2397EBA13BE6D0250F19023F24",
+                large_cover_image: "https://yts.mx/assets/images/movies/the_playroom_2012/large-cover.jpg",
+              },
+            ],
+          },
+        }),
+      });
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it("APIから映画データを取得し、表示する", async () => {
+      render(<Movies />);
+
+      // 状態更新を監視
+      await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
+
+      // 映画タイトルの表示確認
+      expect(screen.getByText("Inception (2010)")).toBeInTheDocument();
+    });
+
+    it("映画データが表示される際に `movieRatingClass` が適切に適用される", async () => {
+      render(<Movies />);
+
+      // 状態更新を監視
+      await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
+
+      // 映画の評価に対応するクラスが適用されていることを確認
+      const ratingElement = screen.getByText("8.8");
+      expect(ratingElement).toHaveClass("soso");
+    });
+  });
+});
 
 // describe("<News />のレンダリングテスト", () => {
 //   afterEach(() => {
