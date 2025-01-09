@@ -59,15 +59,15 @@ describe("<Movies />の関数テスト", () => {
           data: {
             movies: [
               {
-                id: 65829,
-                title: "The Playroom",
-                year: 2012,
-                rating: 5.3,
-                genres: ["Drama"],
-                runtime: 83,
-                synopsis: "",
-                url: "https://yts.mx/torrent/download/DE8172D9D0303B2397EBA13BE6D0250F19023F24",
-                large_cover_image: "https://yts.mx/assets/images/movies/the_playroom_2012/large-cover.jpg",
+                id: 1,
+                title: "Inception",
+                year: 2010,
+                rating: 8.8,
+                genres: ["Action", "Adventure", "Sci-Fi"],
+                runtime: 148,
+                synopsis: "A thief who steals corporate secrets...",
+                url: "https://example.com/inception",
+                large_cover_image: "https://example.com/inception.jpg",
               },
             ],
           },
@@ -80,101 +80,140 @@ describe("<Movies />の関数テスト", () => {
     });
 
     it("APIから映画データを取得し、表示する", async () => {
-      render(<Movies />);
+      await act(async () => {
+        render(<Movies />);
+      });
 
-      // 状態更新を監視
-      await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
-
-      // 映画タイトルの表示確認
-      expect(screen.getByText("Inception (2010)")).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText("Inception (2010)")).toBeInTheDocument();
+      });
     });
 
     it("映画データが表示される際に `movieRatingClass` が適切に適用される", async () => {
-      render(<Movies />);
+      await act(async () => {
+        render(<Movies />);
+      });
 
-      // 状態更新を監視
-      await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
-
-      // 映画の評価に対応するクラスが適用されていることを確認
-      const ratingElement = screen.getByText("8.8");
-      expect(ratingElement).toHaveClass("soso");
+      await waitFor(() => {
+        const ratingElement = screen.getByText("8.8");
+        expect(ratingElement).toHaveClass("soso");
+      });
     });
   });
 });
 
-// describe("<News />のレンダリングテスト", () => {
-//   afterEach(() => {
-//     jest.clearAllMocks(); // 各テスト後にモックをクリア
+describe("<News />のレンダリングテスト", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue({
+      json: jest.fn().mockResolvedValue([
+        {
+          id: 42644834,
+          title: "My Amazon TV Now Unmutes Itself During Prime Video Commercial Breaks",
+          user: "MourYother",
+          url: "https://old.reddit.com/r/mildlyinfuriating/comments/1hx5wkq/my_amazon_tv_now_unmutes_itself_during_prime/"
+        },
+        {
+          id: 42620001,
+          title: "Nvidia releases its own brand of world models",
+          user: "bariscan",
+          url: "https://techcrunch.com/2025/01/06/nvidia-releases-its-own-brand-of-world-models/"
+        }
+      ])
+    });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it("ニュースデータが正しく表示されること", async () => {
+    await act(async () => {
+      render(<News />);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("My Amazon TV Now Unmutes Itself During Prime Video Commercial Breaks")).toBeInTheDocument();
+      expect(screen.getByText("Nvidia releases its own brand of world models")).toBeInTheDocument();
+    });
+
+    expect(screen.getByText("My Amazon TV Now Unmutes Itself During Prime Video Commercial Breaks").closest("a")).toHaveAttribute(
+      "href",
+      "https://old.reddit.com/r/mildlyinfuriating/comments/1hx5wkq/my_amazon_tv_now_unmutes_itself_during_prime/"
+    );
+
+    expect(screen.getByText(/\/ID: MourYother/)).toBeInTheDocument();
+    expect(screen.getByText(/\/ID: bariscan/)).toBeInTheDocument();
+  });
+});
+
+// describe("<Todos />のテスト", () => {
+//   beforeEach(() => {
+//     global.fetch = jest.fn(() =>
+//       Promise.resolve({
+//         json: () => Promise.resolve([
+//           { id: 1, title: "Todo 1", completed: false, userId: 1 },
+//           { id: 2, title: "Todo 2", completed: true, userId: 1 }
+//         ])
+//       })
+//     );
 //   });
 
-//   it("ニュースデータが正しく表示されること", async () => {
-//     render(<News />);
+//   afterEach(() => {
+//     jest.restoreAllMocks();
+//   });
 
-//     // ニュースタイトルが表示されることを確認
-//     await waitFor(() => {
-//       expect(screen.getByText("Test News 1")).toBeInTheDocument();
-//       expect(screen.getByText("Test News 2")).toBeInTheDocument();
+//   it("Todoリストが正しく表示されること", async () => {
+//     await act(async () => {
+//       render(<Todos />);
 //     });
 
-//     // ニュースURLが正しく設定されているかを確認
-//     expect(screen.getByText("Test News 1").closest("a")).toHaveAttribute(
-//       "href",
-//       "https://example.com/test-news-1"
-//     );
-//     expect(screen.getByText("Test News 2").closest("a")).toHaveAttribute(
-//       "href",
-//       "https://example.com/test-news-2"
-//     );
-
-//     // ニュースのIDが表示されることを確認
-//     expect(screen.getByText(/\/ID: user1/)).toBeInTheDocument();
-//     expect(screen.getByText(/\/ID: user2/)).toBeInTheDocument();
-//   });
-// });
-
-
-// describe("Todosコンポーネント", () => {
-  
-//   test("todosが正しく表示されること", async () => {
-//     render(<Todos />);
-
-//     // APIからデータが取得されるまで待機
-//     await waitFor(() => screen.getByText("Todos"));
-
-//     // ここでscreen.debug()を使って、レンダリングされているDOMを確認
-//     screen.debug(); // これで実際のレンダリング内容を確認できます
-
-//     // APIから取得したデータが表示されるか確認
-//     const todoItem = await screen.findByText(/#1/); // IDが1のTodo項目を探す
-//     expect(todoItem).toBeInTheDocument();
+//     await waitFor(() => {
+//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
+//       expect(screen.getByText("#2 / Todo 2")).toBeInTheDocument();
+//     });
 //   });
 
-//   test("新しいTodoを追加できること", async () => {
-//     render(<Todos />);
+//   it("新しいTodoを追加できること", async () => {
+//     await act(async () => {
+//       render(<Todos />);
+//     });
 
-//     // 新しいTodoを追加
 //     const input = screen.getByPlaceholderText("New Todo");
-//     const button = screen.getByText("SEND");
+//     const sendButton = screen.getByText("SEND");
 
 //     fireEvent.change(input, { target: { value: "New Todo" } });
-//     fireEvent.click(button);
+//     fireEvent.click(sendButton);
 
-//     // 新しいTodoがリストに追加されることを確認
-//     const newTodo = await screen.findByText("New Todo");
-//     expect(newTodo).toBeInTheDocument();
+//     expect(screen.getByText("#3 / New Todo")).toBeInTheDocument();
 //   });
 
-//   test("Todoを削除できること", async () => {
-//     render(<Todos />);
+//   it("Todoを削除できること", async () => {
+//     await act(async () => {
+//       render(<Todos />);
+//     });
 
-//     // 初期のTodo項目を取得
-//     const todoItem = await screen.findByText(/#1/);
+//     await waitFor(() => {
+//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
+//     });
 
-//     // 削除ボタンをクリックしてTodoを削除
-//     const deleteButton = screen.getByText("❌");
-//     fireEvent.click(deleteButton);
+//     const deleteButtons = screen.getAllByText("❌");
+//     fireEvent.click(deleteButtons[0]);
 
-//     // Todoが削除されることを確認
-//     expect(todoItem).not.toBeInTheDocument();
+//     expect(screen.queryByText("#1 / Todo 1")).not.toBeInTheDocument();
+//   });
+
+//   it("Todoの完了状態を切り替えられること", async () => {
+//     await act(async () => {
+//       render(<Todos />);
+//     });
+
+//     await waitFor(() => {
+//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
+//     });
+
+//     const todoTitle = screen.getByText("#1 / Todo 1");
+//     fireEvent.click(todoTitle);
+
+//     expect(screen.getByText("DONE ✅")).toBeInTheDocument();
 //   });
 // });
