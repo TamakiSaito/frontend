@@ -146,74 +146,77 @@ describe("<News />のレンダリングテスト", () => {
   });
 });
 
-// describe("<Todos />のテスト", () => {
-//   beforeEach(() => {
-//     global.fetch = jest.fn(() =>
-//       Promise.resolve({
-//         json: () => Promise.resolve([
-//           { id: 1, title: "Todo 1", completed: false, userId: 1 },
-//           { id: 2, title: "Todo 2", completed: true, userId: 1 }
-//         ])
-//       })
-//     );
-//   });
+describe("<Todos />のテスト", () => {
+  beforeEach(() => {
+    jest.spyOn(global, "fetch").mockResolvedValue({
+      json: jest.fn().mockResolvedValue([
+        { id: 1, userId: 1, title: "Test Todo 1", completed: false },
+        { id: 2, userId: 1, title: "Test Todo 2", completed: true },
+      ]),
+    });
+  });
 
-//   afterEach(() => {
-//     jest.restoreAllMocks();
-//   });
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
-//   it("Todoリストが正しく表示されること", async () => {
-//     await act(async () => {
-//       render(<Todos />);
-//     });
+  it("初期レンダリングとデータ取得のテスト", async () => {
+    await act(async () => {
+      render(<Todos />);
+    });
+  
+    await waitFor(() => {
+      expect(screen.getByText(/Test Todo 1/)).toBeInTheDocument();
+      expect(screen.getByText(/Test Todo 2/)).toBeInTheDocument();
+    }, { timeout: 5000 });
+  });
 
-//     await waitFor(() => {
-//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
-//       expect(screen.getByText("#2 / Todo 2")).toBeInTheDocument();
-//     });
-//   });
+  it("新しいTodoの追加テスト", async () => {
+    await act(async () => {
+      render(<Todos />);
+    });
 
-//   it("新しいTodoを追加できること", async () => {
-//     await act(async () => {
-//       render(<Todos />);
-//     });
+    const input = screen.getByPlaceholderText("New Todo");
+    const sendButton = screen.getByText("SEND");
 
-//     const input = screen.getByPlaceholderText("New Todo");
-//     const sendButton = screen.getByText("SEND");
+    fireEvent.change(input, { target: { value: "New Test Todo" } });
+    fireEvent.click(sendButton);
 
-//     fireEvent.change(input, { target: { value: "New Todo" } });
-//     fireEvent.click(sendButton);
+    await waitFor(() => {
+      expect(screen.queryByText(/New Test Todo/)).toBeInTheDocument();
+    });
+  });
 
-//     expect(screen.getByText("#3 / New Todo")).toBeInTheDocument();
-//   });
+  it("Todoの削除テスト", async () => {
+    await act(async () => {
+      render(<Todos />);
+    });
+  
+    await waitFor(() => {
+      const deleteButtons = screen.queryAllByRole('button', { name: '❌' });
+      expect(deleteButtons.length).toBeGreaterThan(0);
+      fireEvent.click(deleteButtons[0]);
+    });
+  
+    await waitFor(() => {
+      expect(screen.queryByText(/Test Todo 1/)).not.toBeInTheDocument();
+    });
+  });
 
-//   it("Todoを削除できること", async () => {
-//     await act(async () => {
-//       render(<Todos />);
-//     });
-
-//     await waitFor(() => {
-//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
-//     });
-
-//     const deleteButtons = screen.getAllByText("❌");
-//     fireEvent.click(deleteButtons[0]);
-
-//     expect(screen.queryByText("#1 / Todo 1")).not.toBeInTheDocument();
-//   });
-
-//   it("Todoの完了状態を切り替えられること", async () => {
-//     await act(async () => {
-//       render(<Todos />);
-//     });
-
-//     await waitFor(() => {
-//       expect(screen.getByText("#1 / Todo 1")).toBeInTheDocument();
-//     });
-
-//     const todoTitle = screen.getByText("#1 / Todo 1");
-//     fireEvent.click(todoTitle);
-
-//     expect(screen.getByText("DONE ✅")).toBeInTheDocument();
-//   });
-// });
+  it("Todoの完了状態の変更テスト", async () => {
+    await act(async () => {
+      render(<Todos />);
+    });
+  
+    await waitFor(() => {
+      const todoTitle = screen.queryByText(/Test Todo 1/);
+      expect(todoTitle).toBeInTheDocument();
+      fireEvent.click(todoTitle);
+    });
+  
+    await waitFor(() => {
+      const completedTodos = screen.queryAllByText("DONE ✅");
+      expect(completedTodos.length).toBe(2); // 元々1つ完了済み + 新たに完了したもの
+    });
+  });
+});

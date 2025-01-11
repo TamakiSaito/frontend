@@ -1,9 +1,23 @@
-import styles from "./page.module.css"
+'use client'
 
-export default function Home() {
+import type { NextPage } from 'next'
+import styles from './page.module.css'
+import styled from 'styled-components'
+
+const H1 = styled.h1`
+  color: red;
+`
+
+const Home: NextPage = () => {
   return (
-    <>
-      <div className={styles.red}>Hello Next</div>
-    </>
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <H1>
+          Welcome to <a href='https://nextjs.org'>Next.js!</a>
+        </H1>
+      </main>
+    </div>
   )
 }
+
+export default Home

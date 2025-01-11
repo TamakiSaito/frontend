@@ -11,7 +11,7 @@ export default function Todos() {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
       .then((json) => {
-        const result = json.filter((item) => item.useId === 1);
+        const result = json.filter((item) => item.userId === 1);
         setTodos(result);
         setTodoKey(result.length + 1);
       });

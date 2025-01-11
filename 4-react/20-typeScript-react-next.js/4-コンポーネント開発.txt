@@ -1,0 +1,32 @@
+1. コンポーネント開発
+
+-- Presentational Component : 見た目を実装するコンポーネント
+                             基本的にPropsで渡されたデータを元に、適切なUIパーツを表示することだけをする
+-- Container Component : デザインは一切実装せずに、ビジネスロジックのみを担う
+                        Hooksを持たせて状態を使って表示内容を切り替える・APIコールなどの副作用を実装するなどの実装をする
+
+-- Atomic Design / アトミックデザイン : デザインシステムを構築する方法論 
+  -- Atoms : UIの最小単位。それ以上機能的に分割できないもの(ボタン/テキスト)
+  -- Moluecles : 1つ以上のAtomsを組み合わせて作られる要素(検索フォーム/ラベル付きテキストボックス)
+  -- Organisms : 1つ以上のMoleculesを組み合わせて作られる要素(ヘッダー/入力フォーム)
+  -- Templates : Organismsを組み合わせて1つの画面として成り立つもの(ページレイアウト)
+  -- Pages : Templateにアプリケーションとして動作するデータが注ぎ込まれたもの(ページそのもの)
+
+
+1. styled-componentsによるスタイル実装
+
+-- styled-components : CSS in JSと呼ばれるライブラリの一つ / JavaScript内にCSSを記述できる
+  #Next.jsプロジェクト内で実行
+  $ npm install --save styled-components
+  $ npm install --save-dev @types/styled-components
+    
+  next.config.jsに設定を追加
+  /** @type {import('next').NextConfig} */
+  const nextConfig = {
+    reactStrictMode: true,
+    compiler: {
+      styledComponents: true,
+    },
+  }
+  
+  module.exports = nextConfig

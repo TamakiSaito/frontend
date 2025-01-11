@@ -1,3 +1,5 @@
+'use client'
+
 // 型のために導入
 import { GetStaticProps, NextPage, NextPageContext } from 'next'
 import Head from 'next/head'
