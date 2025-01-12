@@ -7,7 +7,7 @@ import Movies from "../components/Movies";
 import News from "../components/News";
 import Todos from "../components/Todos";
 
-describe("<Count />のレンダリングテスト", () => {
+describe("<Count />のテスト", () => {
   it("Snapshot test", () => {
     const utils = render(<Count />);
     expect(utils.container).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe("<Count />のレンダリングテスト", () => {
   });
 });
 
-describe("<Movies />の関数テスト", () => {
+describe("<Movies />のテスト", () => {
   describe("movieRatingClass 関数のテスト", () => {
     const movieRatingClass = (rating) =>
       rating >= 9 ? "good" : rating >= 7 ? "soso" : "bad";
@@ -79,7 +79,7 @@ describe("<Movies />の関数テスト", () => {
       jest.restoreAllMocks();
     });
 
-    it("APIから映画データを取得し、表示する", async () => {
+    it("APIから映画データを取得し、表示されること", async () => {
       await act(async () => {
         render(<Movies />);
       });
@@ -89,7 +89,7 @@ describe("<Movies />の関数テスト", () => {
       });
     });
 
-    it("映画データが表示される際に `movieRatingClass` が適切に適用される", async () => {
+    it("映画データが表示される際に `movieRatingClass` が適切に適用されること", async () => {
       await act(async () => {
         render(<Movies />);
       });
@@ -102,7 +102,7 @@ describe("<Movies />の関数テスト", () => {
   });
 });
 
-describe("<News />のレンダリングテスト", () => {
+describe("<News />のテスト", () => {
   beforeEach(() => {
     jest.spyOn(global, "fetch").mockResolvedValue({
       json: jest.fn().mockResolvedValue([
@@ -171,7 +171,7 @@ describe("<Todos />のテスト", () => {
     }, { timeout: 5000 });
   });
 
-  it("新しいTodoの追加テスト", async () => {
+  it("新しいTodoが作成されること", async () => {
     await act(async () => {
       render(<Todos />);
     });
@@ -187,7 +187,7 @@ describe("<Todos />のテスト", () => {
     });
   });
 
-  it("Todoの削除テスト", async () => {
+  it("削除ボタンを押したらTodoが削除されること", async () => {
     await act(async () => {
       render(<Todos />);
     });
@@ -203,7 +203,7 @@ describe("<Todos />のテスト", () => {
     });
   });
 
-  it("Todoの完了状態の変更テスト", async () => {
+  it("完了状態に変更されること", async () => {
     await act(async () => {
       render(<Todos />);
     });
