@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Count />のテスト Snapshot test 1`] = `
+<div>
+  <button>
+    +
+  </button>
+  <button>
+    -
+  </button>
+  <div>
+    Count 
+    0
+  </div>
+</div>
+`;
+
 exports[`<Count />のレンダリングテスト Snapshot test 1`] = `
 <div>
   <button>
