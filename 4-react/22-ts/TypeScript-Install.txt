@@ -1,0 +1,2 @@
+# TypeScriptを初めから適応
+$ npm create vite@latest app1 -- --template react-ts

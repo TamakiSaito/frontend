@@ -1,0 +1,4 @@
+# React -> TypeScriptを適応する方法
+$ npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+$ npx tsc --init
+# ファイル名を.tsxへ変更
