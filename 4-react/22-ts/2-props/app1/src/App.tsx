@@ -1,6 +1,7 @@
 import './App.css'
-import Counter from './components/Counter'
 import Hello from './components/Hello'
+import Counter from './components/Counter'
+import Login from './components/Login'
 
 // 下にexport default Appがあれば
 // const App: React.FC = () => {} でfunction App()の代わりに記述もできる
@@ -22,6 +23,7 @@ function App() {
       <Hello name='Micheal' onClick={onClick} getUserClass={getUserClass} userClassify={'Dancer'} />
       <Hello name='Smith' onClick={onClick} getUserClass={getUserClass} userClassify={'Singer'} />
       <Counter />
+      <Login />
     </>
   )
 }
