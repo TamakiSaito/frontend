@@ -10,6 +10,9 @@ function App() {
   const onClick = (): void => {
     alert('Hey!!')
   }
+  const onSubmit = (): void => {
+    alert('alert')
+  }
 
   const getUserClass = (name: string, userClass: string): string => {
     return `${name} : ${userClass}`
@@ -23,7 +26,7 @@ function App() {
       <Hello name='Micheal' onClick={onClick} getUserClass={getUserClass} userClassify={'Dancer'} />
       <Hello name='Smith' onClick={onClick} getUserClass={getUserClass} userClassify={'Singer'} />
       <Counter />
-      <Login />
+      <Login onSubmit={onSubmit} />
     </>
   )
 }
