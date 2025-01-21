@@ -10,8 +10,9 @@ function App() {
   const onClick = (): void => {
     alert('Hey!!')
   }
-  const onSubmit = (): void => {
-    alert('alert')
+  const onSubmit = (form: { id: string, pw: string }): void => {
+    alert('Loginしました')
+    console.log(form)
   }
 
   const getUserClass = (name: string, userClass: string): string => {
