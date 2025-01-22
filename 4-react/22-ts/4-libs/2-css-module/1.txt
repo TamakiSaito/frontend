@@ -1,0 +1,6 @@
+1. src / global-d.ts ファイル作成
+  #ファイル内で下記を記述して宣言する
+  declare module '*.scss' {
+    const content: Record<string, string>;
+    export default content;
+  }

@@ -1,0 +1,8 @@
+Type Script: Sass import
+# npm i node-sass
+
+1. src / global-d.ts ファイル作成
+  #ファイル内で下記を記述して宣言する
+  declare module '*.scss' 
+
+$ npm install -D sass-embedded
