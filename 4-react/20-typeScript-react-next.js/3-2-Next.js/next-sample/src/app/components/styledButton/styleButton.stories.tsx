@@ -15,7 +15,6 @@ const meta: Meta<typeof StyledButton> = {
   },
 }
 
-
 type PrimaryProps = {
   incrementAction: (e: React.MouseEvent, count: number) => void;
 };

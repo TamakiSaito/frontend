@@ -1,5 +1,5 @@
 import path from 'path';
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
   stories: ['../src/app/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../'),
+        '@': path.resolve(process.cwd(), './src'),
       };
     }
     return config;
