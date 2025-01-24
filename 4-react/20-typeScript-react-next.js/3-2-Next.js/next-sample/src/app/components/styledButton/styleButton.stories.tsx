@@ -10,18 +10,18 @@ const meta: Meta<typeof StyledButton> = {
       control: { type: 'select', options: ['primary', 'success', 'transparent'] },
     },
     onClick: {
-      action: 'clicked'
-    }
+      action: 'clicked',
+    },
+    // childrenをストーリーブックで変更できるようにする
+    children: {
+      control: { type: 'text' },
+    },
   },
-}
-
-type PrimaryProps = {
-  incrementAction: (e: React.MouseEvent, count: number) => void;
 };
 
+export default meta;
 
-export default meta
-type Story = StoryObj<typeof StyledButton>
+type Story = StoryObj<typeof StyledButton>;
 
 export const Primary: Story = {
   args: {
@@ -40,22 +40,23 @@ export const Primary: Story = {
 
     return (
       <StyledButton {...args} variant="primary" onClick={onClick}>
-        Count: {count}
+        {args.children} {/* childrenはストーリーブックで変更できるようになる */}
+        <div>Count: {count}</div>
       </StyledButton>
-    )
+    );
   },
-}
+};
 
 export const Success: Story = {
   args: {
     variant: 'success',
     children: 'Success Button',
   },
-}
+};
 
 export const Transparent: Story = {
   args: {
     variant: 'transparent',
     children: 'Transparent Button',
   },
-}
+};
