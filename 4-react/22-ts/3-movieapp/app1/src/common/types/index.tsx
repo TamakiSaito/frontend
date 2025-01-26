@@ -3,8 +3,12 @@ export interface Movie {
   rating: number
   year: number
   large_cover_image: string
+  genres: string[]
+  runtime: number
 }
 
+export type MoviesType = Movie[];
+
 export interface MoviesProps {
-  movies: Movie[];
+  movies: MoviesType;
 }
