@@ -40,7 +40,7 @@
     "next.config.js",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx"
-  ],
+, ".storybook/main.js", ".storybook/preview.js"  ],
   "exclude": [
     "node_modules"
   ]

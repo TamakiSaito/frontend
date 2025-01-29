@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { StyledButton } from './index'
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { StyledButton } from './index';
 
 const meta: Meta<typeof StyledButton> = {
   title: 'Components/StyledButton',
@@ -12,10 +12,12 @@ const meta: Meta<typeof StyledButton> = {
     onClick: {
       action: 'clicked',
     },
-    // childrenをストーリーブックで変更できるようにする
     children: {
       control: { type: 'text' },
     },
+  },
+  args: {
+    onClick: () => console.log('Button clicked'),
   },
 };
 
@@ -27,22 +29,21 @@ export const Primary: Story = {
   args: {
     variant: 'primary',
     children: 'Primary Button',
-    onClick: () => console.log('Button clicked'),
   },
   render: (args) => {
     const [count, setCount] = useState(0);
     const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (args.onClick) {
-        args.onClick(e);
-      }
+      if (args.onClick) args.onClick(e);
       setCount((c) => c + 1);
     };
 
     return (
-      <StyledButton {...args} variant="primary" onClick={onClick}>
-        {args.children} {/* childrenはストーリーブックで変更できるようになる */}
-        <div>Count: {count}</div>
-      </StyledButton>
+      <div>
+        <StyledButton {...args} variant="primary" onClick={onClick}>
+          {args.children}
+        </StyledButton>
+        <div style={{ marginTop: '8px' }}>Count: {count}</div>
+      </div>
     );
   },
 };

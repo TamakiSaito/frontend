@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components'
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 const variants = {
   primary: {
@@ -16,15 +17,17 @@ const variants = {
     backgroundColor: 'transparent',
     border: '1px solid black',
   },
-} as const
+} as const;
 
 export type StyledButtonProps = {
-  variant: keyof typeof variants
-}
+  variant: keyof typeof variants;
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
 
-export const StyledButton = styled.button<StyledButtonProps>`
+const Button = styled.button<StyledButtonProps>`
   ${({ variant }) => {
-    const style = variants[variant]
+    const style = variants[variant];
     return css`
       color: ${style.color};
       background-color: ${style.backgroundColor};
@@ -36,10 +39,16 @@ export const StyledButton = styled.button<StyledButtonProps>`
   font-size: 14px;
   height: 38px;
   line-height: 22px;
-  letter-spacing: 0;
   cursor: pointer;
 
   &:focus {
     outline: none;
   }
-`
+`;
+
+const StyledButton: React.FC<StyledButtonProps> = ({ variant, children }) => {
+  return <Button variant={variant}>{children}</Button>;
+};
+
+export default StyledButton;
+export { StyledButton };
