@@ -1,0 +1,34 @@
+1. テスト環境構築 JEST
+$ npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event babel-jest identity-obj-proxy
+# @testing-library/react：React コンポーネントのテスト用
+# @testing-library/jest-dom：Jest 用のカスタムマッチャー（toBeInTheDocument() など）
+# @testing-library/user-event：ユーザーの入力シミュレーション
+# babel-jest：ES6+ のコードを Jest で実行するため
+# identity-obj-proxy：CSS モジュールを Jest で扱うため
+
+2. package.jsonにJestの設定を追加
+# "jest": {
+#   "testEnvironment": "jsdom",
+#   "moduleNameMapper": {
+#     "\\.(css|scss|sass)$": "identity-obj-proxy"
+#   },
+#   "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
+# }
+
+3. Jest のセットアップファイルを作成
+# jest.setup.js を作成
+# import '@testing-library/jest-dom/extend-expect';
+
+4. テスト用スクリプトをpackage.jsonに追加
+# "scripts": {
+#   "test": "jest",
+#   "test:watch": "jest --watch"
+# }
+
+5. Jest の動作確認
+# テストファイル (Button.test.js) を作成
+
+6. テストを実行
+$ npm test
+# 変更を監視しながらテストする場合
+$ npm run test:watch

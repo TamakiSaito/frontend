@@ -1,19 +1,21 @@
-import React from 'react';
-import Counter from './counter';
-import Button from './button';
-import CustomHook from './customHook';
-import CustomHookSecond from './customHookSecond';
+// Appコンポーネント
+// JSX文法
 
-function App() {
+// CSS
+import './App.css';
+
+// 1. exportがないとAppをimportできない
+export default function App() {
+  // JS  
+  const name = "Yang";
+  const mark = "!";
+  
+  // XML
   return (
-    <div>
-      <h1>React Study</h1>
-      <Counter />
-      <Button />
-      <CustomHook />
-      <CustomHookSecond />
+    <div className="App">
+        <p className="red">
+         おはようございます{name}{mark}
+        </p>
     </div>
   );
 }
-
-export default App;
